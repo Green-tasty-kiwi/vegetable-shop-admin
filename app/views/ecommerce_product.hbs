@@ -21,61 +21,60 @@
         <div class="col-lg-12">
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
-                    <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> Product info</a></li>
-                    <li><a class="nav-link" data-toggle="tab" href="#tab-2"> Data</a></li>
-                    <li><a class="nav-link" data-toggle="tab" href="#tab-3"> Discount</a></li>
-                    <li><a class="nav-link" data-toggle="tab" href="#tab-4"> Images</a></li>
+                    <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> Create product</a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-2"> Update product</a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-3"> Add discount</a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-4"> Change image</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
                         <div class="panel-body">
+                            <form method='POST' enctype="multipart/form-data" action="/api/products">
+                                <fieldset>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Name:</label>
+                                        <div class="col-sm-10"><input name="name" type="text" class="form-control"
+                                                placeholder="Product name" required></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Price:</label>
+                                        <div class="col-sm-10"><input name="price" type="text" class="form-control"
+                                                placeholder="$160.00" required></div>
+                                    </div>
+                                    <div class="form-group row"><label
+                                            class="col-sm-2 col-form-label">Description:</label>
+                                        <div class="col-sm-10"><input name="description" type="text"
+                                                class="form-control" placeholder="Product description" required></div>
+                                    </div>
 
-                            <fieldset>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Name:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="Product name"></div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Price:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="$160.00"></div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Description:</label>
-                                    <div class="col-sm-10">
-                                        <div class="summernote">
-                                            <h3>Lorem Ipsum is simply</h3>
-                                            dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has
-                                                been the industry's</strong> standard dummy text ever since the 1500s,
-                                            when an unknown printer took a galley of type and scrambled it to make a
-                                            type specimen book. It has survived not only five centuries, but also the
-                                            leap into electronic
-                                            when an unknown printer took a galley of type and scrambled it to make a
-                                            type specimen book. It has survived not only five centuries, but also the
-                                            leap into electronic
-                                            typesetting, remaining essentially unchanged. It was popularised in the
-                                            1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                            and more recently with
-                                            <br />
-
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Title:</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                placeholder="...">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
-                                        Title:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" placeholder="...">
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Description:</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                placeholder="Sheets containing Lorem"></div>
                                     </div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
-                                        Description:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="Sheets containing Lorem"></div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
-                                        Keywords:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="Lorem, Ipsum, has, been"></div>
-                                </div>
-                            </fieldset>
-
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Keywords:</label>
+                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                                placeholder="Lorem, Ipsum, has, been"></div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="file-loading col-sm-12">
+                                            <label for="input-b6" style="width:30%">Download product image</label>
+                                            <div style="width:100%"><input id="input-b6" name="image" type="file"
+                                                    required></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10"></div>
+                                        <div class="col-sm-2"><button type="submit" class="btn btn-secondary btn-lg"
+                                                id="btn-chat" style="width:100%">Send</button></div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                     <div id="tab-2" class="tab-pane">
@@ -92,7 +91,8 @@
                                 </div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Location:</label>
                                     <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="location"></div>
+                                            placeholder="location">
+                                    </div>
                                 </div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Tax Class:</label>
                                     <div class="col-sm-10">
@@ -104,7 +104,8 @@
                                 </div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Quantity:</label>
                                     <div class="col-sm-10"><input type="text" class="form-control"
-                                            placeholder="Quantity"></div>
+                                            placeholder="Quantity">
+                                    </div>
                                 </div>
                                 <div class="form-group row"><label class="col-sm-2 col-form-label">Minimum
                                         quantity:</label>
@@ -552,6 +553,12 @@
 
 <script>
     $(document).ready(function () {
+        $("#input-b6").fileinput({
+            showUpload: false,
+            dropZoneEnabled: false,
+            maxFileCount: 1,
+            mainClass: "input-group-lg"
+        });
 
         $('.summernote').summernote();
 
@@ -562,6 +569,5 @@
             calendarWeeks: true,
             autoclose: true
         });
-
     });
 </script>
