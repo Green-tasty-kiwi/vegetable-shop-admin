@@ -29,7 +29,7 @@
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
                         <div class="panel-body">
-                            <form method='POST' enctype="multipart/form-data" action="/api/products">
+                            <form method='POST' enctype="multipart/form-data" action="/api/product">
                                 <fieldset>
                                     <div class="form-group row"><label class="col-sm-2 col-form-label">Name:</label>
                                         <div class="col-sm-10"><input name="name" type="text" class="form-control"
@@ -47,24 +47,24 @@
 
                                     <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
                                             Title:</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
+                                        <div class="col-sm-10"><input type="text" name="meta_tag" class="form-control"
                                                 placeholder="...">
                                         </div>
                                     </div>
                                     <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
                                             Description:</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
-                                                placeholder="Sheets containing Lorem"></div>
+                                        <div class="col-sm-10"><input type="text" name="meta_description"
+                                                class="form-control" placeholder="Sheets containing Lorem"></div>
                                     </div>
                                     <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
                                             Keywords:</label>
-                                        <div class="col-sm-10"><input type="text" class="form-control"
-                                                placeholder="Lorem, Ipsum, has, been"></div>
+                                        <div class="col-sm-10"><input type="text" name="meta_keywords"
+                                                class="form-control" placeholder="Lorem, Ipsum, has, been"></div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="file-loading col-sm-12">
                                             <label for="input-b6" style="width:30%">Download product image</label>
-                                            <div style="width:100%"><input id="input-b6" name="image" type="file"
+                                            <div style="width:100%"><input id="input-b6" name="url" type="file"
                                                     required></div>
                                         </div>
                                     </div>

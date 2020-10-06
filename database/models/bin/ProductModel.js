@@ -17,11 +17,21 @@ module.exports = class Product extends require('sequelize').Model {
 
                 description: {
                     type: Sequelize.STRING,
+                    allowNull: false,
                 },
 
                 price: {
                     type: Sequelize.INTEGER,
                     allowNull: false,
+                },
+                meta_tag: {
+                    type: Sequelize.STRING,
+                },
+                meta_description: {
+                    type: Sequelize.STRING,
+                },
+                meta_keywords: {
+                    type: Sequelize.STRING,
                 },
             },
             {

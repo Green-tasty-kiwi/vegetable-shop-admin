@@ -8,12 +8,9 @@ const path = require('path');
 
 const exphbs = require('express-handlebars');
 const FileStore = require('session-file-store')(session);
-const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('shop_db', 'admin', 'admin', {
-    dialect: 'postgres',
-});
-const viewControllers = require('./app/routes');
 
+const viewControllers = require('./app/routes');
+const database = require('./database/index');
 const sessionSettings = {
     store: new FileStore({}),
     secret: 'keyboard cat',
@@ -30,6 +27,8 @@ const handlebars = exphbs.create({
     defaultLayout: 'layout',
     extname: '.hbs',
 });
+
+database.sequelize.connect();
 
 app.engine('hbs', handlebars.engine);
 app.set('view engine', 'hbs');

@@ -9,7 +9,6 @@ module.exports = class Address extends require('sequelize').Model {
                     autoIncrement: true,
                     unique: true,
                 },
-
                 street: {
                     type: Sequelize.STRING,
                     allowNull: false,
@@ -22,6 +21,7 @@ module.exports = class Address extends require('sequelize').Model {
                     type: Sequelize.INTEGER,
                     allowNull: false,
                 },
+            },
             {
                 tableName: 'addresses',
                 paranoid: true,
