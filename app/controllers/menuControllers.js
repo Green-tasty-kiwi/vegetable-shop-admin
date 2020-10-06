@@ -18,7 +18,9 @@ router
     })
     .get('/product', async (request, response, next) => {
         try {
-            const categories = await Model.CategoryModel.findAll();
+            const categories = await Model.CategoryModel.findAll({
+                raw: true,
+            });
             response.render('ecommerce_product', { categories });
         } catch (error) {
             console.log(error);

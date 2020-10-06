@@ -10,6 +10,7 @@ const exphbs = require('express-handlebars');
 const FileStore = require('session-file-store')(session);
 
 const viewControllers = require('./app/routes');
+const apiRouter = require('./api');
 const database = require('./database/index');
 const sessionSettings = {
     store: new FileStore({}),
@@ -47,6 +48,7 @@ app.use(passport.session());
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(viewControllers);
+app.use(apiRouter);
 app.listen(port, () => {
     console.log(`App is listening at http://localhost:${port}`);
 });

@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const Models = require('../database/index');
+const fs = require('fs');
 
 const productStorage = multer.diskStorage({
     destination: function (request, file, cb) {
@@ -15,7 +16,7 @@ const productStorage = multer.diskStorage({
     },
 });
 
-router.post(
+module.exports = router.post(
     '/',
     multer({ storage: productStorage }).single('product'),
     async (request, response, next) => {
