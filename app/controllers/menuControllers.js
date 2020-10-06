@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const Model = require('../../database/index');
 
 router
     .get('/', function (request, response) {
@@ -15,8 +16,14 @@ router
     .get('/product_list', function (request, response) {
         response.render('ecommerce_product_list');
     })
-    .get('/product', function (request, response) {
-        response.render('ecommerce_product');
+    .get('/product', async (request, response, next) => {
+        try {
+            const categories = await Model.CategoryModel.findAll();
+            response.render('ecommerce_product', { categories });
+        } catch (error) {
+            console.log(error);
+            response.send('Error');
+        }
     })
     .get('/product_detail', function (request, response) {
         response.render('ecommerce_product_detail');

@@ -28,7 +28,7 @@ const handlebars = exphbs.create({
     extname: '.hbs',
 });
 
-database.sequelize.connect();
+database.sequelize.authenticate();
 
 app.engine('hbs', handlebars.engine);
 app.set('view engine', 'hbs');
