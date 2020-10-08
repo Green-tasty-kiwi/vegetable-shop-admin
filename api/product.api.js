@@ -12,7 +12,12 @@ const productStorage = multer.diskStorage({
         cb(null, dir);
     },
     filename: function (req, file, cb) {
-        cb(null, `product${path.extname(file.originalname)}`);
+        cb(
+            null,
+            `product.${path.basename(file.originalname)}${path.extname(
+                file.originalname
+            )}`
+        );
     },
 });
 
@@ -37,7 +42,7 @@ module.exports = router.post(
             const quantity = await Models.QuantityModel.create({
                 kg: body.kg,
             });
-            response.send(product, image, quantity);
+            response.send([product, image, quantity]);
         } catch (error) {
             console.error(error);
             response.send('error');

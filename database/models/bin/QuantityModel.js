@@ -22,4 +22,13 @@ module.exports = class Quantity extends require('sequelize').Model {
             }
         );
     }
+
+    static associate = function (models) {
+        Quantity.belongsTo(models.ProductModel, {
+            onDelete: 'NO ACTION',
+            onUpdate: 'CASCADE',
+            foreignKey: 'product_id',
+            as: 'product',
+        });
+    };
 };

@@ -42,4 +42,25 @@ module.exports = class Product extends require('sequelize').Model {
             }
         );
     }
+
+    static associate = function (models) {
+        Product.hasOne(models.ImageModel, {
+            onDelete: 'CASCADE',
+            onUpdate: 'NO ACTION',
+            foreignKey: 'image_id',
+            as: 'image',
+        });
+        Product.hasOne(models.CategoryModel, {
+            onDelete: 'NO ACTION',
+            onUpdate: 'NO ACTION',
+            foreignKey: 'category_id',
+            as: 'category',
+        });
+        Product.hasOne(models.QuantityModel, {
+            onDelete: 'CASCADE',
+            onUpdate: 'NO ACTION',
+            foreignKey: 'quantity_id',
+            as: 'quantity',
+        });
+    };
 };
