@@ -22,13 +22,10 @@ module.exports = class Image extends require('sequelize').Model {
             }
         );
     }
-
     static associate = function (models) {
         Image.belongsTo(models.ProductModel, {
             onDelete: 'NO ACTION',
-            onUpdate: 'CASCADE',
-            foreignKey: 'product_id',
-            as: 'product',
+            onUpdate: 'NO ACTION',
         });
     };
 };

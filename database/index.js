@@ -9,6 +9,8 @@ const models = {
     CityModel: require('./models/users/CityModel'),
     CustomerModel: require('./models/users/CustomerModel'),
     UserModel: require('./models/users/UserModel'),
+    OrderProductsModel: require('./models/bin/OrderProductsModel'),
+    OrderModel: require('./models/bin/OrderModel'),
 };
 const sequelize = new Sequelize('shop_db', 'admin', 'admin', {
     dialect: 'postgres',

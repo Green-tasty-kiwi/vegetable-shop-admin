@@ -1,0 +1,420 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Product edit</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>E-commerce</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Product edit</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> Update product</a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-2"> Add discount</a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-3"> Change image</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <form method='POST' action="/api/product/{{product.id}}">
+                                <fieldset>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">ID:</label>
+                                        <div class="col-sm-10"><input type="text" name="id" class="form-control"
+                                                value="{{product.id}}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Name:</label>
+                                        <div class="col-sm-10"><input name="name" type="text" class="form-control"
+                                                value="{{product.name}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Price
+                                            ($):</label>
+                                        <div class="col-sm-10"><input name="price" type="text" class="form-control"
+                                                value="{{product.price}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label
+                                            class="col-sm-2 col-form-label">Description:</label>
+                                        <div class="col-sm-10"><input name="description" type="text"
+                                                class="form-control" value="{{product.description}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Quantity
+                                            (kg):</label>
+                                        <div class="col-sm-10"><input name="kg" type="text" class="form-control"
+                                                value="{{product.quantity.kg}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Category:</label>
+                                        <div class="col-sm-10"><input name="category" type="text" class="form-control"
+                                                value="{{product.category.name}}" disabled></div>
+                                    </div>
+
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Title:</label>
+                                        <div class="col-sm-10"><input type="text" name="meta_tag" class="form-control"
+                                                value="{{product.meta_tag}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Description:</label>
+                                        <div class="col-sm-10"><input type="text" name="meta_description"
+                                                class="form-control" value="{{product.meta_description}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Meta Tag
+                                            Keywords:</label>
+                                        <div class="col-sm-10"><input type="text" name="meta_keywords"
+                                                class="form-control" value="{{product.meta_keywords}}"></div>
+                                    </div>
+                                    <div class="form-group row"><label class="col-sm-2 col-form-label">Status:</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="status">
+                                                <option value="{{product.status}}" selected>{{product.status}}</option>
+                                                <option value="disabled">disabled</option>
+                                                <option value="in_stock">in_stock</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10"></div>
+                                        <div class="col-sm-2"><button type="submit" class="btn btn-secondary btn-lg"
+                                                style="width:100%">Send</button></div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-stripped table-bordered">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Group
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Discount
+                                            </th>
+                                            <th style="width: 20%">
+                                                Date start
+                                            </th>
+                                            <th style="width: 20%">
+                                                Date end
+                                            </th>
+                                            <th>
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option selected>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="10">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="$10.00">
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-calendar"></i></span><input type="text"
+                                                        class="form-control" value="07/01/2014">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <div class=" row " style="width:100%; padding:0; margin:0; margin-bottom:20px;">
+                                    <div class="col-sm-4"></div>
+                                    <img class="col-sm-4" style="height:250px;"
+                                        src="/api/product/images/{{product.image.url}}">
+                                    <div class="col-sm-4"></div>
+                                </div>
+                                <form class="form form-vertical row" style="width:100%; padding:0; margin:0;"
+                                    action="/api/product/{{product.id}}/image" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="col-sm-12 text-center">
+                                        <div class="product_image" style=" display: inline-block;">
+                                            <div class="file-loading">
+                                                <input id="input-b6" name="product" type="file">
+                                            </div>
+                                        </div>
+                                        <div class="product-hint" style="margin: 10px 0;">
+                                            <small>Select file < 1500 KB</small>
+                                                    <button type="submit" class="btn btn-primary download"
+                                                        style="margin-left:20px;">Download</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer">
+    <div class="float-right">
+        10GB of <strong>250GB</strong> Free.
+    </div>
+    <div>
+        <strong>Copyright</strong> Example Company &copy; 2014-2018
+    </div>
+</div>
+
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#input-b6").fileinput({
+            showUpload: false,
+            dropZoneEnabled: false,
+            maxFileCount: 1,
+            mainClass: "input-group-lg"
+        });
+    })
+</script>

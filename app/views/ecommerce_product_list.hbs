@@ -22,651 +22,85 @@
 
 
     <div class="ibox-content m-b-sm border-bottom">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="col-form-label" for="product_name">Product Name</label>
-                    <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name"
-                        class="form-control">
+        <form method="GET" action="/product_list">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label class="col-form-label" for="product_name">Product Name</label>
+                        <input type="search" id="product_name" name="product_name" placeholder="Product Name"
+                            class="form-control search_input">
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label class="col-form-label" for="price">Price</label>
-                    <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <label class="col-form-label" for="quantity">Quantity</label>
-                    <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity"
-                        class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="col-form-label" for="status">Status</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="1" selected>Enabled</option>
-                        <option value="0">Disabled</option>
-                    </select>
-                </div>
-            </div>
-        </div>
 
+                <div class="col-sm-2">
+                    <div class="form-group" style="margin-top:33px;">
+                        <button type="submit" class="btn btn-danger wrn-btn ">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-content">
+                    <form method="GET" action="/product_list">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                            <thead>
+                                <tr>
 
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
-                        <thead>
-                            <tr>
+                                    <th data-toggle="true">Product Category</th>
+                                    <th data-hide="phone">Product Name</th>
+                                    <th data-hide="all">Description</th>
+                                    <th data-hide="phone">Price</th>
+                                    <th data-hide="phone,tablet">Quantity</th>
+                                    <th data-hide="phone">Status</th>
+                                    <th class="text-right" data-sort-ignore="true">Action</th>
 
-                                <th data-toggle="true">Product Name</th>
-                                <th data-hide="phone">Model</th>
-                                <th data-hide="all">Description</th>
-                                <th data-hide="phone">Price</th>
-                                <th data-hide="phone,tablet">Quantity</th>
-                                <th data-hide="phone">Status</th>
-                                <th class="text-right" data-sort-ignore="true">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each products}}
+                                <tr>
+                                    <td>
+                                        <span name="category">{{category.name}}</span>
+                                    </td>
+                                    <td>
+                                        <span name="product_name">{{name}}</span>
+                                    </td>
+                                    <td>
+                                        <span style="width:100%;" minlength="150"
+                                            name="description">{{description}}</span>
+                                    </td>
+                                    <td>
+                                        <span name="price">${{price}}</span>
+                                    </td>
+                                    <td>
+                                        <span name="quantity">{{quantity.kg}} kg</span>
+                                    </td>
+                                    <td>
+                                        <span class="status label label-primary" name="status">{{status}}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="btn" style="width:100%; padding:0;">
+                                            <a style="border:1px solid lightgray; padding:3px 25px;"
+                                                href="/products/{{id}}/edit">Edit</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Example product 1
-                                </td>
-                                <td>
-                                    Model 1
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $50.00
-                                </td>
-                                <td>
-                                    1000
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 2
-                                </td>
-                                <td>
-                                    Model 2
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $40.00
-                                </td>
-                                <td>
-                                    4300
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 3
-                                </td>
-                                <td>
-                                    Model 3
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $22.00
-                                </td>
-                                <td>
-                                    300
-                                </td>
-                                <td>
-                                    <span class="label label-danger">Disabled</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 4
-                                </td>
-                                <td>
-                                    Model 4
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $67.00
-                                </td>
-                                <td>
-                                    2300
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 5
-                                </td>
-                                <td>
-                                    Model 5
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $76.00
-                                </td>
-                                <td>
-                                    800
-                                </td>
-                                <td>
-                                    <span class="label label-warning">Low stock</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 6
-                                </td>
-                                <td>
-                                    Model 6
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $60.00
-                                </td>
-                                <td>
-                                    6000
-                                </td>
-                                <td>
-                                    <span class="label label-danger">Disabled</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 7
-                                </td>
-                                <td>
-                                    Model 7
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $32.00
-                                </td>
-                                <td>
-                                    700
-                                </td>
-                                <td>
-                                    <span class="label label-danger">Disabled</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 8
-                                </td>
-                                <td>
-                                    Model 8
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $86.00
-                                </td>
-                                <td>
-                                    5180
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 9
-                                </td>
-                                <td>
-                                    Model 9
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $97.00
-                                </td>
-                                <td>
-                                    450
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 10
-                                </td>
-                                <td>
-                                    Model 10
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $43.00
-                                </td>
-                                <td>
-                                    7600
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 1
-                                </td>
-                                <td>
-                                    Model 1
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $50.00
-                                </td>
-                                <td>
-                                    1000
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 2
-                                </td>
-                                <td>
-                                    Model 2
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $40.00
-                                </td>
-                                <td>
-                                    4300
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 3
-                                </td>
-                                <td>
-                                    Model 3
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $22.00
-                                </td>
-                                <td>
-                                    300
-                                </td>
-                                <td>
-                                    <span class="label label-warning">Low stock</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 4
-                                </td>
-                                <td>
-                                    Model 4
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $67.00
-                                </td>
-                                <td>
-                                    2300
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 5
-                                </td>
-                                <td>
-                                    Model 5
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $76.00
-                                </td>
-                                <td>
-                                    800
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 6
-                                </td>
-                                <td>
-                                    Model 6
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $60.00
-                                </td>
-                                <td>
-                                    6000
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 7
-                                </td>
-                                <td>
-                                    Model 7
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $32.00
-                                </td>
-                                <td>
-                                    700
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 8
-                                </td>
-                                <td>
-                                    Model 8
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $86.00
-                                </td>
-                                <td>
-                                    5180
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 9
-                                </td>
-                                <td>
-                                    Model 9
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $97.00
-                                </td>
-                                <td>
-                                    450
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Example product 10
-                                </td>
-                                <td>
-                                    Model 10
-                                </td>
-                                <td>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                    that it has a more-or-less normal distribution of letters, as opposed to using
-                                    'Content here, content here', making it look like readable English.
-                                </td>
-                                <td>
-                                    $43.00
-                                </td>
-                                <td>
-                                    7600
-                                </td>
-                                <td>
-                                    <span class="label label-primary">Enable</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button class="btn-white btn btn-xs">View</button>
-                                        <button class="btn-white btn btn-xs">Edit</button>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <ul class="pagination float-right"></ul>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <ul class="pagination float-right"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
 
                 </div>
             </div>
@@ -686,3 +120,15 @@
 
 </div>
 </div>
+
+<script>
+    $(".status").each((i, elem) => {
+        if ($(elem).html() === 'disabled') {
+            $(elem).removeClass("label-primary");
+            $(elem).addClass("label-danger")
+        } else if ($(elem).html() === 'in_stock') {
+            $(elem).removeClass("label-primary");
+            $(elem).addClass("label-warning")
+        }
+    })
+</script>

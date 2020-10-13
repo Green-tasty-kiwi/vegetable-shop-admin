@@ -24,13 +24,4 @@ module.exports = class Category extends require('sequelize').Model {
             }
         );
     }
-
-    static associate = function (models) {
-        Category.hasMany(models.ProductModel, {
-            onDelete: 'CASCADE',
-            onUpdate: 'NO ACTION',
-            foreignKey: 'products_id',
-            as: 'products',
-        });
-    };
 };

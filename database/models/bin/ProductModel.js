@@ -33,6 +33,10 @@ module.exports = class Product extends require('sequelize').Model {
                 meta_keywords: {
                     type: Sequelize.STRING,
                 },
+                status: {
+                    type: Sequelize.ENUM('enabled', 'in_stock', 'disabled'),
+                    defaultValue: 'enabled',
+                },
             },
             {
                 tableName: 'products',
@@ -42,15 +46,14 @@ module.exports = class Product extends require('sequelize').Model {
             }
         );
     }
-
+    isInStock() {
+        return this.status === 'in_stock';
+    }
+    isDisabled() {
+        return this.status === 'disabled';
+    }
     static associate = function (models) {
-        Product.hasOne(models.ImageModel, {
-            onDelete: 'CASCADE',
-            onUpdate: 'NO ACTION',
-            foreignKey: 'image_id',
-            as: 'image',
-        });
-        Product.hasOne(models.CategoryModel, {
+        Product.belongsTo(models.CategoryModel, {
             onDelete: 'NO ACTION',
             onUpdate: 'NO ACTION',
             foreignKey: 'category_id',
@@ -59,8 +62,14 @@ module.exports = class Product extends require('sequelize').Model {
         Product.hasOne(models.QuantityModel, {
             onDelete: 'CASCADE',
             onUpdate: 'NO ACTION',
-            foreignKey: 'quantity_id',
+            foreignKey: 'product_id',
             as: 'quantity',
+        });
+        Product.hasOne(models.ImageModel, {
+            onDelete: 'CASCADE',
+            onUpdate: 'NO ACTION',
+            foreignKey: 'product_id',
+            as: 'image',
         });
     };
 };
